@@ -124,6 +124,7 @@
   "common.provider.cursor": "Cursor",
   "common.provider.forgecode": "ForgeCode",
   "common.provider.gemini": "Gemini CLI",
+  "common.provider.kimi": "Kimi CLI",
   "common.provider.detectError": "偵測提供者失敗。將僅使用 Claude。",
   "common.provider.antigravity": "Antigravity",
   "common.provider.opencode": "OpenCode",

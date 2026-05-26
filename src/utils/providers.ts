@@ -1,6 +1,6 @@
 import type { ProviderId } from "../types";
 
-export const PROVIDER_IDS: ProviderId[] = ["aider", "antigravity", "claude", "cline", "codex", "cursor", "forgecode", "gemini", "opencode"];
+export const PROVIDER_IDS: ProviderId[] = ["aider", "antigravity", "claude", "cline", "codex", "cursor", "forgecode", "gemini", "kimi", "opencode"];
 export const DEFAULT_PROVIDER_ID: ProviderId = "claude";
 
 const PROVIDER_TRANSLATIONS: Record<
@@ -15,6 +15,7 @@ const PROVIDER_TRANSLATIONS: Record<
   cursor: { key: "common.provider.cursor", fallback: "Cursor" },
   forgecode: { key: "common.provider.forgecode", fallback: "ForgeCode" },
   gemini: { key: "common.provider.gemini", fallback: "Gemini CLI" },
+  kimi: { key: "common.provider.kimi", fallback: "Kimi CLI" },
   opencode: { key: "common.provider.opencode", fallback: "OpenCode" },
 };
 
@@ -85,6 +86,13 @@ const PROVIDER_SESSION_CAPABILITIES: Record<ProviderId, ProviderSessionCapabilit
     supportsSessionDeletion: false,
     supportsArchiveCreation: false,
   },
+  kimi: {
+    supportsConversationBreakdown: false,
+    supportsNativeRename: false,
+    supportsResumeCommand: true,
+    supportsSessionDeletion: false,
+    supportsArchiveCreation: false,
+  },
   opencode: {
     supportsConversationBreakdown: false,
     supportsNativeRename: true,
@@ -114,6 +122,7 @@ export function getProviderId(provider?: ProviderId | string): ProviderId {
     case "codex":
     case "cursor":
     case "gemini":
+    case "kimi":
     case "forgecode":
     case "opencode":
     case "claude":
@@ -204,6 +213,9 @@ export function getResumeCommand(
     case "forgecode":
       resume = `forge conversation resume ${sessionId}`;
       break;
+    case "kimi":
+      resume = `kimi -r ${sessionId}`;
+      break;
     default:
       resume = null;
   }
@@ -234,6 +246,7 @@ export const PROVIDER_BADGE_STYLES: Record<ProviderId, string> = {
   cursor: "bg-cyan-500/15 text-cyan-700 dark:text-cyan-300",
   forgecode: "bg-orange-500/15 text-orange-700 dark:text-orange-300",
   gemini: "bg-purple-500/15 text-purple-600 dark:text-purple-400",
+  kimi: "bg-fuchsia-500/15 text-fuchsia-600 dark:text-fuchsia-300",
   opencode: "bg-blue-500/15 text-blue-600 dark:text-blue-400",
   aider: "bg-rose-500/15 text-rose-600 dark:text-rose-400",
   antigravity: "bg-indigo-500/15 text-indigo-600 dark:text-indigo-400",

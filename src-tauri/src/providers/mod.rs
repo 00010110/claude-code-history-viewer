@@ -8,6 +8,7 @@ pub mod codex;
 pub mod cursor;
 pub mod forgecode;
 pub mod gemini;
+pub mod kimi;
 pub mod opencode;
 
 /// Provider identifier
@@ -20,6 +21,7 @@ pub enum ProviderId {
     Codex,
     Cursor,
     Gemini,
+    Kimi,
     ForgeCode,
     OpenCode,
     Antigravity,
@@ -34,6 +36,7 @@ impl ProviderId {
             Self::Codex => "codex",
             Self::Cursor => "cursor",
             Self::Gemini => "gemini",
+            Self::Kimi => "kimi",
             Self::ForgeCode => "forgecode",
             Self::OpenCode => "opencode",
             Self::Antigravity => "antigravity",
@@ -48,6 +51,7 @@ impl ProviderId {
             "codex" => Some(Self::Codex),
             "cursor" => Some(Self::Cursor),
             "gemini" => Some(Self::Gemini),
+            "kimi" => Some(Self::Kimi),
             "forgecode" => Some(Self::ForgeCode),
             "opencode" => Some(Self::OpenCode),
             "antigravity" => Some(Self::Antigravity),
@@ -63,6 +67,7 @@ impl ProviderId {
             Self::Codex => "Codex CLI",
             Self::Cursor => "Cursor",
             Self::Gemini => "Gemini CLI",
+            Self::Kimi => "Kimi CLI",
             Self::ForgeCode => "ForgeCode",
             Self::OpenCode => "OpenCode",
             Self::Antigravity => "Antigravity",
@@ -90,6 +95,9 @@ pub fn detect_providers() -> Vec<ProviderInfo> {
         providers.push(info);
     }
     if let Some(info) = gemini::detect() {
+        providers.push(info);
+    }
+    if let Some(info) = kimi::detect() {
         providers.push(info);
     }
     if let Some(info) = forgecode::detect() {

@@ -109,6 +109,7 @@ export const ProjectTree: React.FC<ProjectTreeProps> = ({
       cursor: 0,
       forgecode: 0,
       gemini: 0,
+      kimi: 0,
       opencode: 0,
     };
 
